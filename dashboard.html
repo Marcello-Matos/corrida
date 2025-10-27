@@ -3,136 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Treino para Iniciantes "Mariana Marques"</title>
+    <title>Dashboard | Mariana Marques</title>
     <style>
         :root {
-            /* Paleta de cores suaves e motivacionais */
-            --primary: #4a6fa5;    /* Azul suave */
-            --secondary: #6b8cbc;  /* Azul claro */
-            --accent: #ff7e5f;     /* Coral */
-            --accent-light: #ffe0d6; /* Coral claro para fundos */
-            --light: #f8fbff;      /* Branco azulado suave */
-            --dark: #2d3748;       /* Cinza escuro */
-            --text: #5a6c7d;       /* Cinza azulado para texto */
-            --border: #d1e3ff;     /* Azul muito claro para bordas */
-            --success: #68bb74;    /* Verde suave */
-            --warning: #e6b455;    /* Amarelo suave */
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            --gradient: linear-gradient(135deg, #6b8cbc 0%, #4a6fa5 100%);
+            /* Paleta de cores futurista e energética */
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --deep-space: #0a0e17;
+            --cosmic-purple: #1a1a2e;
+            --stardust: #2d3047;
+            --galaxy-blue: #16213e;
+            --quantum-teal: #00ffcc;
+            --cyber-yellow: #ffde00;
+            --matrix-green: #00ff41;
+            --hologram-white: rgba(255, 255, 255, 0.9);
+            --glass-morphism: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glow-blue: 0 0 20px rgba(0, 243, 255, 0.7);
+            --glow-purple: 0 0 20px rgba(185, 103, 255, 0.7);
+            --glow-pink: 0 0 20px rgba(255, 42, 109, 0.7);
+            --gradient-futurist: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
+            --gradient-space: linear-gradient(135deg, var(--deep-space) 0%, var(--cosmic-purple) 50%, var(--galaxy-blue) 100%);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+        
         body {
-            background: linear-gradient(135deg, #f8fbff 0%, #e6f0ff 100%);
-            color: var(--text);
+            background: var(--gradient-space);
+            color: var(--hologram-white);
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(185, 103, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 42, 109, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
+        /* Header futurista */
         .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 25px 35px;
-            margin-bottom: 40px;
-            border-left: 5px solid var(--accent);
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 30px 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                var(--glow-blue);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .header-container::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .header-container:hover::before {
+            left: 100%;
         }
         
         .logo-container {
             flex-shrink: 0;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px;
+            background: var(--glass-morphism);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glow-purple);
+            position: relative;
+            overflow: hidden;
         }
         
         .logo {
             height: 80px;
             width: auto;
-            border-radius: 6px;
-            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.7));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .header-content {
             flex: 1;
             text-align: center;
-            padding: 0 25px;
+            padding: 0 30px;
         }
         
         h1 {
-            color: var(--primary);
+            color: transparent;
             margin-bottom: 15px;
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--gradient);
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-futurist);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: 'MARIANA MARQUES';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.7;
         }
         
         .subtitle {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            letter-spacing: 1px;
         }
         
         .current-level {
-            background: var(--accent-light);
-            padding: 12px 20px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(185, 103, 255, 0.2));
+            padding: 15px 30px;
+            border-radius: 50px;
             display: inline-block;
-            margin: 10px 0;
-            border: 2px solid var(--accent);
-            color: var(--primary);
+            margin: 15px 0;
+            border: 1px solid var(--neon-blue);
+            color: var(--hologram-white);
             font-weight: 600;
-            box-shadow: 0 2px 4px rgba(255, 126, 95, 0.1);
+            box-shadow: var(--glow-blue);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
         }
         
+        .current-level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .current-level:hover::before {
+            left: 100%;
+        }
+        
+        /* Cards de treino futuristas */
         .training-plan {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         .day-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 25px;
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--primary);
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         
         .day-card::before {
@@ -140,91 +227,135 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .day-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                var(--glow-purple);
         }
         
         .day-card:hover::before {
-            opacity: 1;
+            opacity: 0.1;
         }
         
         .day-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        .day-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-futurist);
+            transition: width 0.4s ease;
+        }
+        
+        .day-card:hover .day-header::after {
+            width: 100%;
         }
         
         .day-name {
-            color: var(--primary);
-            font-size: 1.4rem;
+            color: var(--hologram-white);
+            font-size: 1.6rem;
             font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
         .day-type {
-            background: var(--gradient);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--gradient-futurist);
+            color: var(--deep-space);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: var(--glow-blue);
+            letter-spacing: 1px;
         }
         
         .workout-details {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .workout-title {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             font-weight: 600;
-            padding-left: 10px;
-            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+            border-left: 3px solid var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
         
         .workout-description {
-            margin-bottom: 15px;
-            line-height: 1.5;
-            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: var(--hologram-white);
         }
         
         .workout-description p {
-            margin-bottom: 8px;
-            padding-left: 5px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .workout-description p::before {
+            content: '▶';
+            position: absolute;
+            left: -5px;
+            color: var(--neon-purple);
+            font-size: 0.8rem;
         }
         
         .workout-info {
-            background: var(--light);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--neon-pink);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .workout-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 42, 109, 0.1), transparent);
         }
         
         .benefits {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
         }
         
         .benefits-title {
             font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
         }
         
         .benefits-list {
@@ -233,36 +364,143 @@
         }
         
         .benefits-list li {
-            padding: 6px 0;
-            padding-left: 28px;
+            padding: 8px 0;
+            padding-left: 35px;
             position: relative;
-            color: var(--text);
+            color: var(--hologram-white);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(5px);
         }
         
         .benefits-list li:before {
-            content: "✓";
+            content: "⚡";
             position: absolute;
             left: 0;
-            color: var(--success);
+            color: var(--quantum-teal);
             font-weight: bold;
-            background: var(--light);
-            width: 20px;
-            height: 20px;
+            background: rgba(0, 255, 204, 0.1);
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
         }
         
-        .weekly-structure {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
+        /* Seção de progressão semanal */
+        .week-progression {
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .week-progression::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .progression-title {
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            text-align: center;
+            font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .progression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .progression-item {
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progression-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .progression-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .progression-item.active {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--glow-blue);
+        }
+        
+        .progression-item.active::before {
+            opacity: 0.1;
+        }
+        
+        .progression-week {
+            font-weight: 700;
+            color: var(--hologram-white);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .progression-focus {
+            font-size: 1rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+        
+        /* Estrutura semanal */
+        .weekly-structure {
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .weekly-structure::before {
@@ -270,60 +508,97 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
         }
         
         .structure-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             text-align: center;
             font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
         }
         
         .structure-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
         
         .structure-item {
             text-align: center;
-            padding: 25px 20px;
-            background: var(--light);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            padding: 30px 25px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .structure-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .structure-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .structure-item:hover::before {
+            opacity: 0.1;
         }
         
         .structure-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.7));
         }
         
         .structure-item h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
+            color: var(--hologram-white);
+            margin-bottom: 15px;
             font-weight: 600;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
+        .structure-item p {
+            color: var(--neon-blue);
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        
+        /* Dicas de progressão */
         .progress-tips {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .progress-tips::before {
@@ -331,109 +606,295 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
         }
         
         .tips-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             text-align: center;
             font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
         }
         
         .tips-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
         
         .tip-card {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid var(--neon-pink);
+            transition: all 0.4s ease;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .tip-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .tip-card:hover::before {
+            opacity: 0.1;
         }
         
         .tip-card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
+            color: var(--neon-purple);
+            margin-bottom: 20px;
             font-weight: 600;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
         }
         
+        .tip-card p {
+            color: var(--hologram-white);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .tip-card strong {
+            color: var(--quantum-teal);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+        
+        /* Botões futuristas */
         .download-section {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 35px;
-            background: var(--gradient);
-            color: white;
+            padding: 18px 45px;
+            background: var(--gradient-futurist);
+            color: var(--deep-space);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(107, 140, 188, 0.3);
+            font-size: 1.1rem;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                var(--glow-blue);
             position: relative;
             overflow: hidden;
+            letter-spacing: 1px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(107, 140, 188, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 243, 255, 0.8);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* Botão para voltar para o treino do Marcelo */
-        .marcelo-btn {
+        /* Botão para a tela do Marcello */
+        .marcello-btn {
             display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+            color: var(--deep-space);
             text-decoration: none;
             border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
-            margin-left: 15px;
+            font-size: 1rem;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 42, 109, 0.5);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
         }
         
-        .marcelo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        .marcello-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .marcello-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 42, 109, 0.7);
+        }
+        
+        .marcello-btn:hover::before {
+            left: 100%;
         }
         
         .header-buttons {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
         
+        /* Barras de intensidade futuristas */
+        .intensity-bar {
+            height: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .intensity-level {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intensity-level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .intensity-very-low {
+            background: linear-gradient(90deg, var(--matrix-green), var(--quantum-teal));
+            width: 30%;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+        
+        .intensity-low {
+            background: linear-gradient(90deg, var(--quantum-teal), var(--neon-blue));
+            width: 45%;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+        }
+        
+        .intensity-medium {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            width: 60%;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .intensity-high {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+            width: 75%;
+            box-shadow: 0 0 15px rgba(185, 103, 255, 0.5);
+        }
+        
+        .intensity-very-high {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+            width: 90%;
+            box-shadow: 0 0 15px rgba(185, 103, 255, 0.5);
+        }
+        
+        .intensity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--hologram-white);
+            margin-top: 8px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Footer futurista */
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding: 40px;
+            color: var(--neon-blue);
+            font-size: 1rem;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .footer p {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        /* Responsividade */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px;
+                padding: 25px;
             }
             
             .logo-container {
@@ -445,7 +906,7 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .header-content {
@@ -453,122 +914,69 @@
             }
             
             .header-buttons {
-                margin-top: 15px;
+                margin-top: 20px;
                 justify-content: center;
+            }
+            
+            .progression-grid,
+            .structure-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
             }
         }
         
-        .intensity-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
+        /* Animações especiais */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 243, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
         }
         
-        .intensity-level {
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .intensity-very-low {
-            background: var(--success);
-            width: 30%;
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
         }
         
-        .intensity-low {
-            background: var(--success);
-            width: 45%;
-        }
-        
-        .intensity-medium {
-            background: var(--warning);
-            width: 60%;
-        }
-        
-        .intensity-high {
-            background: #ed8936;
-            width: 75%;
-        }
-        
-        .intensity-very-high {
-            background: var(--accent);
-            width: 90%;
-        }
-        
-        .intensity-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text);
-            margin-top: 5px;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 25px;
-            color: var(--secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
-        
-        .week-progression {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .progression-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 700;
-        }
-        
-        .progression-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .progression-item {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background: var(--light);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .progression-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .progression-item.active {
-            background: var(--accent-light);
-            border-color: var(--accent);
-        }
-        
-        .progression-week {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        
-        .progression-focus {
-            font-size: 0.9rem;
-            color: var(--text);
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
+    
     <div class="container">
         <div class="header-container">
             <div class="logo-container">
@@ -577,36 +985,36 @@
                 </div>
             </div>
             <div class="header-content">
-                <h1>Iniciante "Mariana Marques"</h1>
-                <p class="subtitle">Programa progressivo para quem está começando na corrida</p>
+                <h1>MARIANA MARQUES</h1>
+                <p class="subtitle">PROGRAMA INICIANTE - EVOLUÇÃO PROGRESSIVA</p>
                 <div class="current-level">
-                    <strong>Nível: Iniciante Total</strong>
+                    <strong>NÍVEL: INICIANTE TOTAL</strong>
                 </div>
-                <p>Plano de 4 semanas • 3 dias por semana • Foco em consistência e evolução gradual</p>
+                <p>PROTOCOLO DE 4 SEMANAS • 3 DIAS/SEMANA • FOCO EM CONSISTÊNCIA E EVOLUÇÃO GRADUAL</p>
             </div>
             <div class="header-buttons">
-                <a href="index.html" class="marcelo-btn">Treino do Marcello</a>
+                <a href="index.html" class="marcello-btn pulse">TREINO MARCELLO</a>
             </div>
         </div>
         
         <div class="week-progression">
-            <h2 class="progression-title">Progressão Semanal</h2>
+            <h2 class="progression-title">PROGRESSÃO SEMANAL</h2>
             <div class="progression-grid">
                 <div class="progression-item active" data-week="1">
-                    <div class="progression-week">Semana 1</div>
-                    <div class="progression-focus">Introdução</div>
+                    <div class="progression-week">SEMANA 01</div>
+                    <div class="progression-focus">INTRODUÇÃO</div>
                 </div>
                 <div class="progression-item" data-week="2">
-                    <div class="progression-week">Semana 2</div>
-                    <div class="progression-focus">Adaptação</div>
+                    <div class="progression-week">SEMANA 02</div>
+                    <div class="progression-focus">ADAPTAÇÃO</div>
                 </div>
                 <div class="progression-item" data-week="3">
-                    <div class="progression-week">Semana 3</div>
-                    <div class="progression-focus">Progressão</div>
+                    <div class="progression-week">SEMANA 03</div>
+                    <div class="progression-focus">PROGRESSÃO</div>
                 </div>
                 <div class="progression-item" data-week="4">
-                    <div class="progression-week">Semana 4</div>
-                    <div class="progression-focus">Consolidação</div>
+                    <div class="progression-week">SEMANA 04</div>
+                    <div class="progression-focus">CONSOLIDAÇÃO</div>
                 </div>
             </div>
         </div>
@@ -616,45 +1024,45 @@
         </div>
         
         <div class="weekly-structure">
-            <h2 class="structure-title">Estrutura Semanal Inteligente</h2>
+            <h2 class="structure-title">ESTRUTURA SEMANAL INTELIGENTE</h2>
             <div class="structure-grid">
                 <div class="structure-item">
                     <div class="structure-icon">🚶‍♀️</div>
-                    <h3>Caminhada/Corrida</h3>
+                    <h3>CAMINHADA/CORRIDA</h3>
                     <p>Terça: Alternância entre caminhada e corrida leve</p>
                 </div>
                 <div class="structure-item">
                     <div class="structure-icon">💪</div>
-                    <h3>Força Básica</h3>
+                    <h3>FORÇA BÁSICA</h3>
                     <p>Quinta: Exercícios simples para fortalecimento</p>
                 </div>
                 <div class="structure-item">
                     <div class="structure-icon">🏃‍♀️</div>
-                    <h3>Corrida Contínua</h3>
+                    <h3>CORRIDA CONTÍNUA</h3>
                     <p>Sábado: Desenvolvimento da resistência</p>
                 </div>
             </div>
         </div>
         
         <div class="progress-tips">
-            <h2 class="tips-title">Dicas para Iniciantes</h2>
+            <h2 class="tips-title">DIRETRIZES DE EVOLUÇÃO</h2>
             <div class="tips-grid">
                 <div class="tip-card">
-                    <h3>📊 Progressão Semanal</h3>
-                    <p><strong>Semana 1:</strong> Introdução aos movimentos</p>
-                    <p><strong>Semana 2:</strong> Aumento gradual do tempo</p>
-                    <p><strong>Semana 3:</strong> Introdução de novos estímulos</p>
-                    <p><strong>Semana 4:</strong> Consolidação dos ganhos</p>
+                    <h3>📊 PROGRESSÃO SEMANAL</h3>
+                    <p><strong>SEMANA 1:</strong> Introdução aos movimentos</p>
+                    <p><strong>SEMANA 2:</strong> Aumento gradual do tempo</p>
+                    <p><strong>SEMANA 3:</strong> Introdução de novos estímulos</p>
+                    <p><strong>SEMANA 4:</strong> Consolidação dos ganhos</p>
                 </div>
                 <div class="tip-card">
-                    <h3>🎯 Metas Realistas</h3>
+                    <h3>🎯 METAS ESTRATÉGICAS</h3>
                     <p>1 mês: Correr 10 minutos sem parar</p>
                     <p>2 meses: Aumentar para 15-20 minutos</p>
                     <p>3 meses: Correr 5km sem caminhar</p>
                     <p>Foco em consistência, não velocidade</p>
                 </div>
                 <div class="tip-card">
-                    <h3>💪 Dicas Importantes</h3>
+                    <h3>💪 OTIMIZAÇÃO COMPLEMENTAR</h3>
                     <p>Respeite os dias de descanso</p>
                     <p>Use tênis adequado para corrida</p>
                     <p>Hidrate-se antes, durante e depois</p>
@@ -664,21 +1072,51 @@
         </div>
         
         <div class="download-section">
-            <button class="btn" onclick="downloadTrainingPlan()">Baixar Plano de Treino</button>
+            <button class="btn" onclick="downloadTrainingPlan()">DOWNLOAD DO PROTOCOLO</button>
         </div>
         
         <div class="footer">
-            <p>© 2025 Marcello e Mariana - Plano de Treino Personalizado</p>
+            <p>© 2025 TRAINING SYSTEMS - TECNOLOGIA DE PONTA EM PERFORMANCE ESPORTIVA</p>
         </div>
     </div>
 
     <script>
+        // Criar partículas de fundo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posição aleatória
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                // Tamanho aleatório
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Cor aleatória
+                const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--quantum-teal)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Animação aleatória
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
         // Dados dos treinos para cada semana - INICIANTE
         const workoutPlans = {
             1: { // Semana 1 - Introdução
                 "Terça-feira": {
-                    type: "Caminhada/Corrida",
-                    title: "Alternância Suave",
+                    type: "CAMINHADA/CORRIDA",
+                    title: "ALTERNÂNCIA SUAVE",
                     description: `
                         <p>Aquecimento: 5min de caminhada leve</p>
                         <p>Principal: 8 séries de (1min correndo + 2min caminhando)</p>
@@ -696,8 +1134,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Força Básica",
-                    title: "Exercícios Fundamentais",
+                    type: "FORÇA BÁSICA",
+                    title: "EXERCÍCIOS FUNDAMENTAIS",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Agachamentos: 3 séries de 10 repetições</p>
@@ -716,8 +1154,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Corrida Contínua",
-                    title: "Corrida Leve",
+                    type: "CORRIDA CONTÍNUA",
+                    title: "CORRIDA LEVE",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Principal: Tente correr 5min sem parar</p>
@@ -738,8 +1176,8 @@
             },
             2: { // Semana 2 - Adaptação
                 "Terça-feira": {
-                    type: "Caminhada/Corrida",
-                    title: "Aumento Progressivo",
+                    type: "CAMINHADA/CORRIDA",
+                    title: "AUMENTO PROGRESSIVO",
                     description: `
                         <p>Aquecimento: 5min de caminhada leve</p>
                         <p>Principal: 6 séries de (2min correndo + 1min caminhando)</p>
@@ -757,8 +1195,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Força Básica",
-                    title: "Fortalecimento Progressivo",
+                    type: "FORÇA BÁSICA",
+                    title: "FORTALECIMENTO PROGRESSIVO",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Agachamentos: 3 séries de 12 repetições</p>
@@ -778,8 +1216,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Corrida Contínua",
-                    title: "Aumento de Duração",
+                    type: "CORRIDA CONTÍNUA",
+                    title: "AUMENTO DE DURAÇÃO",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Principal: Tente correr 8min sem parar</p>
@@ -800,8 +1238,8 @@
             },
             3: { // Semana 3 - Progressão
                 "Terça-feira": {
-                    type: "Caminhada/Corrida",
-                    title: "Intervalos Mais Longos",
+                    type: "CAMINHADA/CORRIDA",
+                    title: "INTERVALOS MAIS LONGOS",
                     description: `
                         <p>Aquecimento: 5min de caminhada leve</p>
                         <p>Principal: 5 séries de (3min correndo + 1min caminhando)</p>
@@ -819,8 +1257,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Força Básica",
-                    title: "Exercícios Completos",
+                    type: "FORÇA BÁSICA",
+                    title: "EXERCÍCIOS COMPLETOS",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Agachamentos: 3 séries de 15 repetições</p>
@@ -841,8 +1279,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Corrida Contínua",
-                    title: "Corrida Estendida",
+                    type: "CORRIDA CONTÍNUA",
+                    title: "CORRIDA ESTENDIDA",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Principal: Tente correr 12-15min sem parar</p>
@@ -863,8 +1301,8 @@
             },
             4: { // Semana 4 - Consolidação
                 "Terça-feira": {
-                    type: "Caminhada/Corrida",
-                    title: "Pré-Teste",
+                    type: "CAMINHADA/CORRIDA",
+                    title: "PRÉ-TESTE",
                     description: `
                         <p>Aquecimento: 5min de caminhada leve</p>
                         <p>Principal: 4 séries de (4min correndo + 1min caminhando)</p>
@@ -882,8 +1320,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Força Básica",
-                    title: "Fortalecimento Completo",
+                    type: "FORÇA BÁSICA",
+                    title: "FORTALECIMENTO COMPLETO",
                     description: `
                         <p>Aquecimento: 5min de caminhada</p>
                         <p>Agachamentos: 3 séries de 15-20 repetições</p>
@@ -904,8 +1342,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Teste Final",
-                    title: "Corrida de 15-20min",
+                    type: "TESTE FINAL",
+                    title: "CORRIDA DE 15-20MIN",
                     description: `
                         <p>Aquecimento: 5-10min de caminhada/corrida leve</p>
                         <p>Teste: Tente correr 15-20min sem parar</p>
@@ -931,6 +1369,7 @@
 
         // Inicializar a página
         document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
             updateTrainingPlan();
             
             // Configurar eventos para os botões de semana
@@ -970,19 +1409,19 @@
                             ${workout.description}
                         </div>
                         <div class="workout-info">
-                            <strong>Duração Total:</strong> ${workout.duration}<br>
-                            <strong>Distância Aproximada:</strong> ${workout.distance}
+                            <strong>DURAÇÃO TOTAL:</strong> ${workout.duration}<br>
+                            <strong>DISTÂNCIA APROXIMADA:</strong> ${workout.distance}
                         </div>
                         <div class="intensity-bar">
                             <div class="intensity-level ${intensityClass}"></div>
                         </div>
                         <div class="intensity-label">
-                            <span>Muito Leve</span>
-                            <span>Intenso</span>
+                            <span>MUITO LEVE</span>
+                            <span>INTENSO</span>
                         </div>
                     </div>
                     <div class="benefits">
-                        <div class="benefits-title">Benefícios:</div>
+                        <div class="benefits-title">BENEFÍCIOS:</div>
                         <ul class="benefits-list">
                             ${workout.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
                         </ul>
@@ -995,9 +1434,9 @@
 
         function downloadTrainingPlan() {
             const planContent = `
-PLANO DE TREINO PARA INICIANTES
-Nível: Iniciante Total
-Duração: 4 semanas | 3 dias/semana
+SISTEMA NEXUS - PROTOCOLO INICIANTE MARIANA MARQUES
+NÍVEL: INICIANTE TOTAL
+DURAÇÃO: 4 SEMANAS | 3 DIAS/SEMANA
 
 TERÇA-FEIRA - CAMINHADA/CORRIDA
 • Aquecimento: 5min de caminhada leve
@@ -1017,7 +1456,7 @@ SÁBADO - CORRIDA CONTÍNUA
 • Volta à calma: 5-10min de caminhada
 • Duração total: 25-45min
 
-DICAS PARA INICIANTES:
+DIRETRIZES NEXUS:
 - Respeite seus limites
 - Use tênis adequado para corrida
 - Hidrate-se bem
@@ -1027,18 +1466,30 @@ DICAS PARA INICIANTES:
 
 Lembre-se: consistência é mais importante que intensidade!
 
-Bons treinos! 🏃‍♀️
+SISTEMA ATIVADO! 🚀
             `;
             
             const blob = new Blob([planContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'plano_treino_iniciante.txt';
+            a.download = 'protocolo_nexus_iniciante.txt';
             a.click();
             URL.revokeObjectURL(url);
             
-            alert('Plano de treino baixado com sucesso!');
+            // Efeito visual de confirmação
+            const btn = document.querySelector('.btn');
+            btn.textContent = 'PROTOCOLO BAIXADO!';
+            btn.style.background = 'var(--matrix-green)';
+            btn.style.color = 'var(--deep-space)';
+            btn.style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.7)';
+            
+            setTimeout(() => {
+                btn.textContent = 'DOWNLOAD DO PROTOCOLO';
+                btn.style.background = 'var(--gradient-futurist)';
+                btn.style.color = 'var(--deep-space)';
+                btn.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3), var(--glow-blue)';
+            }, 2000);
         }
     </script>
 </body>

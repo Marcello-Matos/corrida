@@ -3,136 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Treino - Melhoria de Pace</title>
+    <title>Treino | Plano de Treino Avançado</title>
     <style>
         :root {
-            /* Nova paleta de cores baseada em tons profissionais e modernos */
-            --primary: #1a365d;    /* Azul escuro elegante */
-            --secondary: #2d3748;  /* Cinza azulado */
-            --accent: #e53e3e;     /* Vermelho energético */
-            --accent-light: #fed7d7; /* Vermelho claro para fundos */
-            --light: #f7fafc;      /* Branco suave */
-            --dark: #2d3748;       /* Cinza escuro */
-            --text: #4a5568;       /* Cinza para texto */
-            --border: #e2e8f0;     /* Cinza claro para bordas */
-            --success: #38a169;    /* Verde para elementos positivos */
-            --warning: #d69e2e;    /* Amarelo para alertas */
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Paleta de cores futurista e energética */
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --deep-space: #0a0e17;
+            --cosmic-purple: #1a1a2e;
+            --stardust: #2d3047;
+            --galaxy-blue: #16213e;
+            --quantum-teal: #00ffcc;
+            --cyber-yellow: #ffde00;
+            --matrix-green: #00ff41;
+            --hologram-white: rgba(255, 255, 255, 0.9);
+            --glass-morphism: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glow-blue: 0 0 20px rgba(0, 243, 255, 0.7);
+            --glow-purple: 0 0 20px rgba(185, 103, 255, 0.7);
+            --glow-pink: 0 0 20px rgba(255, 42, 109, 0.7);
+            --gradient-futurist: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
+            --gradient-space: linear-gradient(135deg, var(--deep-space) 0%, var(--cosmic-purple) 50%, var(--galaxy-blue) 100%);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+        
         body {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: var(--text);
+            background: var(--gradient-space);
+            color: var(--hologram-white);
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(185, 103, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 42, 109, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
+        /* Header futurista */
         .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 25px 35px;
-            margin-bottom: 40px;
-            border-left: 5px solid var(--accent);
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 30px 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                var(--glow-blue);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .header-container::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .header-container:hover::before {
+            left: 100%;
         }
         
         .logo-container {
             flex-shrink: 0;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            background: var(--glass-morphism);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glow-purple);
+            position: relative;
+            overflow: hidden;
         }
         
         .logo {
             height: 80px;
             width: auto;
-            border-radius: 6px;
-            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.7));
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .header-content {
             flex: 1;
             text-align: center;
-            padding: 0 25px;
+            padding: 0 30px;
         }
         
         h1 {
-            color: var(--primary);
+            color: transparent;
             margin-bottom: 15px;
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--gradient);
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-futurist);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: 'NEXUS TRAINING SYSTEM';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.7;
         }
         
         .subtitle {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            letter-spacing: 1px;
         }
         
         .current-pace {
-            background: var(--accent-light);
-            padding: 12px 20px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(185, 103, 255, 0.2));
+            padding: 15px 30px;
+            border-radius: 50px;
             display: inline-block;
-            margin: 10px 0;
-            border: 2px solid var(--accent);
-            color: var(--primary);
+            margin: 15px 0;
+            border: 1px solid var(--neon-blue);
+            color: var(--hologram-white);
             font-weight: 600;
-            box-shadow: 0 2px 4px rgba(229, 62, 62, 0.1);
+            box-shadow: var(--glow-blue);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
         }
         
+        .current-pace::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .current-pace:hover::before {
+            left: 100%;
+        }
+        
+        /* Cards de treino futuristas */
         .training-plan {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         .day-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 25px;
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--primary);
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         
         .day-card::before {
@@ -140,91 +227,135 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .day-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                var(--glow-purple);
         }
         
         .day-card:hover::before {
-            opacity: 1;
+            opacity: 0.1;
         }
         
         .day-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        .day-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-futurist);
+            transition: width 0.4s ease;
+        }
+        
+        .day-card:hover .day-header::after {
+            width: 100%;
         }
         
         .day-name {
-            color: var(--primary);
-            font-size: 1.4rem;
+            color: var(--hologram-white);
+            font-size: 1.6rem;
             font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
         .day-type {
-            background: var(--gradient);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--gradient-futurist);
+            color: var(--deep-space);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: var(--glow-blue);
+            letter-spacing: 1px;
         }
         
         .workout-details {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .workout-title {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             font-weight: 600;
-            padding-left: 10px;
-            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+            border-left: 3px solid var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
         
         .workout-description {
-            margin-bottom: 15px;
-            line-height: 1.5;
-            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: var(--hologram-white);
         }
         
         .workout-description p {
-            margin-bottom: 8px;
-            padding-left: 5px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .workout-description p::before {
+            content: '▶';
+            position: absolute;
+            left: -5px;
+            color: var(--neon-purple);
+            font-size: 0.8rem;
         }
         
         .pace-info {
-            background: var(--light);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--neon-pink);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pace-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 42, 109, 0.1), transparent);
         }
         
         .benefits {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
         }
         
         .benefits-title {
             font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
         }
         
         .benefits-list {
@@ -233,36 +364,143 @@
         }
         
         .benefits-list li {
-            padding: 6px 0;
-            padding-left: 28px;
+            padding: 8px 0;
+            padding-left: 35px;
             position: relative;
-            color: var(--text);
+            color: var(--hologram-white);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(5px);
         }
         
         .benefits-list li:before {
-            content: "✓";
+            content: "⚡";
             position: absolute;
             left: 0;
-            color: var(--success);
+            color: var(--quantum-teal);
             font-weight: bold;
-            background: var(--light);
-            width: 20px;
-            height: 20px;
+            background: rgba(0, 255, 204, 0.1);
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
         }
         
-        .weekly-structure {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
+        /* Seção de progressão semanal */
+        .week-progression {
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .week-progression::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .progression-title {
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            text-align: center;
+            font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .progression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .progression-item {
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progression-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .progression-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .progression-item.active {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--glow-blue);
+        }
+        
+        .progression-item.active::before {
+            opacity: 0.1;
+        }
+        
+        .progression-week {
+            font-weight: 700;
+            color: var(--hologram-white);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .progression-focus {
+            font-size: 1rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+        
+        /* Estrutura semanal */
+        .weekly-structure {
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .weekly-structure::before {
@@ -270,60 +508,97 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
         }
         
         .structure-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             text-align: center;
             font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
         }
         
         .structure-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
         
         .structure-item {
             text-align: center;
-            padding: 25px 20px;
-            background: var(--light);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            padding: 30px 25px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .structure-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .structure-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .structure-item:hover::before {
+            opacity: 0.1;
         }
         
         .structure-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.7));
         }
         
         .structure-item h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
+            color: var(--hologram-white);
+            margin-bottom: 15px;
             font-weight: 600;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
+        .structure-item p {
+            color: var(--neon-blue);
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        
+        /* Dicas de progressão */
         .progress-tips {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
+            background: var(--glass-morphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .progress-tips::before {
@@ -331,109 +606,289 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
         }
         
         .tips-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             text-align: center;
             font-weight: 700;
+            background: var(--gradient-futurist);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
         }
         
         .tips-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
         
         .tip-card {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid var(--neon-pink);
+            transition: all 0.4s ease;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
         
         .tip-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .tip-card:hover::before {
+            opacity: 0.1;
         }
         
         .tip-card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
+            color: var(--neon-purple);
+            margin-bottom: 20px;
             font-weight: 600;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
         }
         
+        .tip-card p {
+            color: var(--hologram-white);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .tip-card strong {
+            color: var(--quantum-teal);
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+        
+        /* Botões futuristas */
         .download-section {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 35px;
-            background: var(--gradient);
-            color: white;
+            padding: 18px 45px;
+            background: var(--gradient-futurist);
+            color: var(--deep-space);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+            font-size: 1.1rem;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                var(--glow-blue);
             position: relative;
             overflow: hidden;
+            letter-spacing: 1px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 243, 255, 0.8);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         /* Botão para a tela da Mariana */
         .mariana-btn {
             display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
-            color: white;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+            color: var(--deep-space);
             text-decoration: none;
             border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px rgba(255, 126, 95, 0.3);
-            margin-left: 15px;
+            font-size: 1rem;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 42, 109, 0.5);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+        
+        .mariana-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
         }
         
         .mariana-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 126, 95, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 42, 109, 0.7);
+        }
+        
+        .mariana-btn:hover::before {
+            left: 100%;
         }
         
         .header-buttons {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
         
+        /* Barras de intensidade futuristas */
+        .intensity-bar {
+            height: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .intensity-level {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intensity-level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .intensity-low {
+            background: linear-gradient(90deg, var(--matrix-green), var(--quantum-teal));
+            width: 40%;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+        
+        .intensity-medium {
+            background: linear-gradient(90deg, var(--quantum-teal), var(--neon-blue));
+            width: 60%;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+        }
+        
+        .intensity-high {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            width: 80%;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .intensity-very-high {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+            width: 95%;
+            box-shadow: 0 0 15px rgba(185, 103, 255, 0.5);
+        }
+        
+        .intensity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--hologram-white);
+            margin-top: 8px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Footer futurista */
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding: 40px;
+            color: var(--neon-blue);
+            font-size: 1rem;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-futurist);
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .footer p {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        /* Responsividade */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px;
+                padding: 25px;
             }
             
             .logo-container {
@@ -445,7 +900,7 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .header-content {
@@ -453,117 +908,69 @@
             }
             
             .header-buttons {
-                margin-top: 15px;
+                margin-top: 20px;
                 justify-content: center;
+            }
+            
+            .progression-grid,
+            .structure-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
             }
         }
         
-        .intensity-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
+        /* Animações especiais */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 243, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
         }
         
-        .intensity-level {
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .intensity-low {
-            background: var(--success);
-            width: 40%;
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
         }
         
-        .intensity-medium {
-            background: var(--warning);
-            width: 60%;
-        }
-        
-        .intensity-high {
-            background: #ed8936;
-            width: 80%;
-        }
-        
-        .intensity-very-high {
-            background: var(--accent);
-            width: 95%;
-        }
-        
-        .intensity-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text);
-            margin-top: 5px;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 25px;
-            color: var(--secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
-        
-        .week-progression {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .progression-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 700;
-        }
-        
-        .progression-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .progression-item {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background: var(--light);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .progression-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .progression-item.active {
-            background: var(--accent-light);
-            border-color: var(--accent);
-        }
-        
-        .progression-week {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        
-        .progression-focus {
-            font-size: 0.9rem;
-            color: var(--text);
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
+    
     <div class="container">
         <div class="header-container">
             <div class="logo-container">
@@ -572,36 +979,36 @@
                 </div>
             </div>
             <div class="header-content">
-                <h1>Treino para Melhoria de Pace</h1>
-                <p class="subtitle">Treino específico para evoluir de 5min/km para paces mais rápidos</p>
+                <h1>SISTEMA DE TREINO NEXUS</h1>
+                <p class="subtitle">TECNOLOGIA AVANÇADA PARA OTIMIZAÇÃO DE PERFORMANCE</p>
                 <div class="current-pace">
-                    <strong>Pace Atual: 5:00 min/km</strong>
+                    <strong>PACE ATUAL: 5:00 MIN/KM</strong>
                 </div>
-                <p>Plano de 4 semanas • 4 dias por semana • Foco em velocidade e resistência</p>
+                <p>PROTOCOLO DE 4 SEMANAS • 4 DIAS/SEMANA • FOCO EM VELOCIDADE E RESISTÊNCIA</p>
             </div>
             <div class="header-buttons">
-                <a href="dashboard.html" class="mariana-btn">Treino da Mariana</a>
+                <a href="dashboard.html" class="mariana-btn pulse">TREINO MARIANA</a>
             </div>
         </div>
         
         <div class="week-progression">
-            <h2 class="progression-title">Progressão Semanal</h2>
+            <h2 class="progression-title">PROGRESSÃO SEMANAL</h2>
             <div class="progression-grid">
                 <div class="progression-item active" data-week="1">
-                    <div class="progression-week">Semana 1</div>
-                    <div class="progression-focus">Adaptação</div>
+                    <div class="progression-week">SEMANA 01</div>
+                    <div class="progression-focus">ADAPTAÇÃO</div>
                 </div>
                 <div class="progression-item" data-week="2">
-                    <div class="progression-week">Semana 2</div>
-                    <div class="progression-focus">Intensificação</div>
+                    <div class="progression-week">SEMANA 02</div>
+                    <div class="progression-focus">INTENSIFICAÇÃO</div>
                 </div>
                 <div class="progression-item" data-week="3">
-                    <div class="progression-week">Semana 3</div>
-                    <div class="progression-focus">Consolidação</div>
+                    <div class="progression-week">SEMANA 03</div>
+                    <div class="progression-focus">CONSOLIDAÇÃO</div>
                 </div>
                 <div class="progression-item" data-week="4">
-                    <div class="progression-week">Semana 4</div>
-                    <div class="progression-focus">Teste de Pace</div>
+                    <div class="progression-week">SEMANA 04</div>
+                    <div class="progression-focus">TESTE DE PERFORMANCE</div>
                 </div>
             </div>
         </div>
@@ -611,50 +1018,50 @@
         </div>
         
         <div class="weekly-structure">
-            <h2 class="structure-title">Estrutura Semanal Inteligente</h2>
+            <h2 class="structure-title">ESTRUTURA SEMANAL AVANÇADA</h2>
             <div class="structure-grid">
                 <div class="structure-item">
-                    <div class="structure-icon">🏃‍♂️</div>
-                    <h3>Velocidade</h3>
-                    <p>Quarta: Desenvolvimento da velocidade máxima e potência</p>
+                    <div class="structure-icon">🚀</div>
+                    <h3>VELOCIDADE QUÂNTICA</h3>
+                    <p>Quarta: Desenvolvimento da velocidade máxima e potência neural</p>
                 </div>
                 <div class="structure-item">
                     <div class="structure-icon">🔄</div>
-                    <h3>Recuperação</h3>
+                    <h3>RECUPERAÇÃO ATIVA</h3>
                     <p>Quinta: Reparo muscular e fortalecimento preventivo</p>
                 </div>
                 <div class="structure-item">
                     <div class="structure-icon">⚡</div>
-                    <h3>Ritmo</h3>
+                    <h3>RITMO DE LIMIAR</h3>
                     <p>Sexta: Melhora do limiar e economia de corrida</p>
                 </div>
                 <div class="structure-item">
                     <div class="structure-icon">📈</div>
-                    <h3>Resistência</h3>
+                    <h3>RESISTÊNCIA AERÓBICA</h3>
                     <p>Sábado: Desenvolvimento aeróbico e endurance</p>
                 </div>
             </div>
         </div>
         
         <div class="progress-tips">
-            <h2 class="tips-title">Dicas para Progressão</h2>
+            <h2 class="tips-title">DIRETRIZES DE OTIMIZAÇÃO</h2>
             <div class="tips-grid">
                 <div class="tip-card">
-                    <h3>📊 Progressão Semanal</h3>
-                    <p><strong>Semana 1:</strong> Adaptação aos estímulos</p>
-                    <p><strong>Semana 2:</strong> Aumento de volume nos intervalados</p>
-                    <p><strong>Semana 3:</strong> Intensificação do tempo run</p>
-                    <p><strong>Semana 4:</strong> Consolidação e teste de pace</p>
+                    <h3>📊 PROGRESSÃO SEMANAL</h3>
+                    <p><strong>SEMANA 1:</strong> Adaptação aos estímulos</p>
+                    <p><strong>SEMANA 2:</strong> Aumento de volume nos intervalados</p>
+                    <p><strong>SEMANA 3:</strong> Intensificação do tempo run</p>
+                    <p><strong>SEMANA 4:</strong> Consolidação e teste de pace</p>
                 </div>
                 <div class="tip-card">
-                    <h3>🎯 Metas Realistas</h3>
+                    <h3>🎯 METAS ESTRATÉGICAS</h3>
                     <p>1 mês: Pace de 4:45-4:50min/km</p>
                     <p>2 meses: Pace de 4:30-4:40min/km</p>
                     <p>3 meses: Pace de 4:15-4:25min/km</p>
                     <p>Foco em progressão consistente</p>
                 </div>
                 <div class="tip-card">
-                    <h3>💪 Treino Complementar</h3>
+                    <h3>💪 OTIMIZAÇÃO COMPLEMENTAR</h3>
                     <p>Fortaleça core e membros inferiores</p>
                     <p>Mobilidade de tornozelo e quadril</p>
                     <p>Descanso ativo nos dias de folga</p>
@@ -664,21 +1071,51 @@
         </div>
         
         <div class="download-section">
-            <button class="btn" onclick="downloadTrainingPlan()">Baixar Plano de Treino</button>
+            <button class="btn" onclick="downloadTrainingPlan()">DOWNLOAD DO PROTOCOLO</button>
         </div>
         
         <div class="footer">
-            <p>© 2025 Marcello e Mariana - Plano de Treino Personalizado</p>
+            <p>© 2025 TRAINING SYSTEMS - TECNOLOGIA DE PONTA EM PERFORMANCE ESPORTIVA</p>
         </div>
     </div>
 
     <script>
+        // Criar partículas de fundo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posição aleatória
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                // Tamanho aleatório
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Cor aleatória
+                const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--quantum-teal)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Animação aleatória
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
         // Dados dos treinos para cada semana
         const workoutPlans = {
             1: { // Semana 1 - Adaptação
                 "Quarta-feira": {
-                    type: "Treino de Velocidade",
-                    title: "Intervalados de 400m e 800m",
+                    type: "VELOCIDADE QUÂNTICA",
+                    title: "INTERVALADOS DE 400M E 800M",
                     description: `
                         <p>Aquecimento: 10min em pace leve (5:30-6:00min/km)</p>
                         <p>Principal: 6-8 x 400m no pace de 4:15-4:30min/km</p>
@@ -697,8 +1134,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Recuperação Ativa",
-                    title: "Corrida Leve + Força",
+                    type: "RECUPERAÇÃO ATIVA",
+                    title: "CORRIDA LEVE + FORÇA",
                     description: `
                         <p>Corrida contínua: 30-40min em pace confortável (5:30-6:00min/km)</p>
                         <p>Exercícios educativos: 4x50m de cada</p>
@@ -716,8 +1153,8 @@
                     ]
                 },
                 "Sexta-feira": {
-                    type: "Tempo Run / Ritmo",
-                    title: "Corrida no Limiar",
+                    type: "RITMO DE LIMIAR",
+                    title: "CORRIDA NO LIMIAR",
                     description: `
                         <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
                         <p>Principal: 20-25min no pace de 4:45-5:00min/km</p>
@@ -736,8 +1173,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Longão Progressivo",
-                    title: "Longa Distância com Aceleração",
+                    type: "RESISTÊNCIA AERÓBICA",
+                    title: "LONGA DISTÂNCIA COM ACELERAÇÃO",
                     description: `
                         <p>Início: 30min em pace confortável (5:30-5:45min/km)</p>
                         <p>Meio: 30min acelerando gradualmente (5:15-5:30min/km)</p>
@@ -757,8 +1194,8 @@
             },
             2: { // Semana 2 - Intensificação
                 "Quarta-feira": {
-                    type: "Treino de Velocidade",
-                    title: "Intervalados de 200m e 400m",
+                    type: "VELOCIDADE QUÂNTICA",
+                    title: "INTERVALADOS DE 200M E 400M",
                     description: `
                         <p>Aquecimento: 15min em pace leve (5:30-6:00min/km)</p>
                         <p>Principal: 8-10 x 200m no pace de 4:00-4:15min/km</p>
@@ -777,8 +1214,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Recuperação Ativa",
-                    title: "Corrida Leve + Força Funcional",
+                    type: "RECUPERAÇÃO ATIVA",
+                    title: "CORRIDA LEVE + FORÇA FUNCIONAL",
                     description: `
                         <p>Corrida contínua: 35-45min em pace confortável (5:30-6:00min/km)</p>
                         <p>Exercícios educativos: 5x50m de cada</p>
@@ -796,8 +1233,8 @@
                     ]
                 },
                 "Sexta-feira": {
-                    type: "Tempo Run / Ritmo",
-                    title: "Corrida Contínua no Limiar",
+                    type: "RITMO DE LIMIAR",
+                    title: "CORRIDA CONTÍNUA NO LIMIAR",
                     description: `
                         <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
                         <p>Principal: 25-30min no pace de 4:40-4:55min/km</p>
@@ -816,8 +1253,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Longão Progressivo",
-                    title: "Longa Distância com Variações",
+                    type: "RESISTÊNCIA AERÓBICA",
+                    title: "LONGA DISTÂNCIA COM VARAÇÕES",
                     description: `
                         <p>Início: 25min em pace confortável (5:30-5:45min/km)</p>
                         <p>Meio: 35min com variações (5:00-5:30min/km)</p>
@@ -837,8 +1274,8 @@
             },
             3: { // Semana 3 - Consolidação
                 "Quarta-feira": {
-                    type: "Treino de Velocidade",
-                    title: "Intervalados de 800m e 1000m",
+                    type: "VELOCIDADE QUÂNTICA",
+                    title: "INTERVALADOS DE 800M E 1000M",
                     description: `
                         <p>Aquecimento: 15min em pace leve (5:30-6:00min/km)</p>
                         <p>Principal: 5-6 x 800m no pace de 4:20-4:35min/km</p>
@@ -857,8 +1294,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Recuperação Ativa",
-                    title: "Corrida Leve + Mobilidade",
+                    type: "RECUPERAÇÃO ATIVA",
+                    title: "CORRIDA LEVE + MOBILIDADE",
                     description: `
                         <p>Corrida contínua: 40-50min em pace confortável (5:30-6:00min/km)</p>
                         <p>Exercícios de mobilidade: 15min focados em quadril e tornozelo</p>
@@ -876,8 +1313,8 @@
                     ]
                 },
                 "Sexta-feira": {
-                    type: "Tempo Run / Ritmo",
-                    title: "Corrida Progressiva no Limiar",
+                    type: "RITMO DE LIMIAR",
+                    title: "CORRIDA PROGRESSIVA NO LIMIAR",
                     description: `
                         <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
                         <p>Principal: 30min progressivo (5:00 → 4:40min/km)</p>
@@ -896,8 +1333,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Longão Progressivo",
-                    title: "Longa Distância com Ritmo Controlado",
+                    type: "RESISTÊNCIA AERÓBICA",
+                    title: "LONGA DISTÂNCIA COM RITMO CONTROLADO",
                     description: `
                         <p>Início: 20min em pace confortável (5:30-5:45min/km)</p>
                         <p>Meio: 40min no pace alvo (5:00-5:10min/km)</p>
@@ -917,8 +1354,8 @@
             },
             4: { // Semana 4 - Teste de Pace
                 "Quarta-feira": {
-                    type: "Teste de Velocidade",
-                    title: "Teste de 1.600m e 3.200m",
+                    type: "TESTE DE VELOCIDADE",
+                    title: "TESTE DE 1.600M E 3.200M",
                     description: `
                         <p>Aquecimento: 20min completo com alongamentos dinâmicos</p>
                         <p>Teste 1: 1.600m no melhor pace possível</p>
@@ -937,8 +1374,8 @@
                     ]
                 },
                 "Quinta-feira": {
-                    type: "Recuperação Ativa",
-                    title: "Corrida Muito Leve + Alongamento",
+                    type: "RECUPERAÇÃO ATIVA",
+                    title: "CORRIDA MUITO LEVE + ALONGAMENTO",
                     description: `
                         <p>Corrida contínua: 25-30min em pace muito leve (6:00-6:30min/km)</p>
                         <p>Alongamento estático: 20min focado em grupos musculares trabalhados</p>
@@ -956,8 +1393,8 @@
                     ]
                 },
                 "Sexta-feira": {
-                    type: "Teste de Ritmo",
-                    title: "Teste de 5km",
+                    type: "TESTE DE RITMO",
+                    title: "TESTE DE 5KM",
                     description: `
                         <p>Aquecimento: 20min progressivo com acelerações</p>
                         <p>Teste: 5km no melhor tempo possível</p>
@@ -976,8 +1413,8 @@
                     ]
                 },
                 "Sábado": {
-                    type: "Longão de Recuperação",
-                    title: "Corrida Longa e Confortável",
+                    type: "LONGO DE RECUPERAÇÃO",
+                    title: "CORRIDA LONGA E CONFORTAVEL",
                     description: `
                         <p>Corrida contínua: 50-60min em pace confortável (5:45-6:15min/km)</p>
                         <p>Foco em técnica e relaxamento</p>
@@ -1002,6 +1439,7 @@
 
         // Inicializar a página
         document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
             updateTrainingPlan();
             
             // Configurar eventos para os botões de semana
@@ -1041,19 +1479,19 @@
                             ${workout.description}
                         </div>
                         <div class="pace-info">
-                            <strong>Pace Alvo:</strong> ${workout.pace}<br>
-                            <strong>Distância Total:</strong> ${workout.distance}
+                            <strong>PACE ALVO:</strong> ${workout.pace}<br>
+                            <strong>DISTÂNCIA TOTAL:</strong> ${workout.distance}
                         </div>
                         <div class="intensity-bar">
                             <div class="intensity-level ${intensityClass}"></div>
                         </div>
                         <div class="intensity-label">
-                            <span>Baixa</span>
-                            <span>Alta</span>
+                            <span>BAIXA</span>
+                            <span>ALTA</span>
                         </div>
                     </div>
                     <div class="benefits">
-                        <div class="benefits-title">Benefícios:</div>
+                        <div class="benefits-title">BENEFÍCIOS:</div>
                         <ul class="benefits-list">
                             ${workout.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
                         </ul>
@@ -1066,11 +1504,11 @@
 
         function downloadTrainingPlan() {
             const planContent = `
-PLANO DE TREINO - MELHORIA DE PACE
-Pace Atual: 5:00 min/km
-Duração: 4 semanas | 4 dias/semana
+SISTEMA NEXUS - PROTOCOLO DE TREINO AVANÇADO
+PACE ATUAL: 5:00 MIN/KM
+DURAÇÃO: 4 SEMANAS | 4 DIAS/SEMANA
 
-QUARTA-FEIRA - TREINO DE VELOCIDADE
+QUARTA-FEIRA - VELOCIDADE QUÂNTICA
 • Aquecimento: 10min (5:30-6:00min/km)
 • Principal: 6-8 x 400m (4:15-4:30min/km)
 • Recuperação: 400m trote entre repetições
@@ -1085,38 +1523,50 @@ QUINTA-FEIRA - RECUPERAÇÃO ATIVA
 • Alongamento completo
 • Distância total: 5-7km
 
-SEXTA-FEIRA - TEMPO RUN
+SEXTA-FEIRA - RITMO DE LIMIAR
 • Aquecimento: 15min progressivo
 • Principal: 20-25min (4:45-5:00min/km)
 • Manter ritmo constante
 • Volta à calma: 10min
 • Distância total: 8-9km
 
-SÁBADO - LONGO PROGRESSIVO
+SÁBADO - RESISTÊNCIA AERÓBICA
 • Início: 30min (5:30-5:45min/km)
 • Meio: 30min (5:15-5:30min/km)
 • Final: 15-20min (5:00-5:10min/km)
 • Distância total: 12-15km
 
-DICAS:
-- Hidrate-se adequadamente
-- Alimentação pré e pós-treino
-- Respeite os dias de descanso
-- Escute seu corpo
-- Progressão gradual
+DIRETRIZES NEXUS:
+- Hidratação estratégica
+- Nutrição de precisão
+- Respeite os protocolos de recuperação
+- Monitoramento biométrico constante
+- Progressão algorítmica
 
-Bons treinos! 🏃‍♂️
+SISTEMA ATIVADO! 🚀
             `;
             
             const blob = new Blob([planContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'plano_treino_melhoria_pace.txt';
+            a.download = 'protocolo_nexus_treinamento.txt';
             a.click();
             URL.revokeObjectURL(url);
             
-            alert('Plano de treino baixado com sucesso!');
+            // Efeito visual de confirmação
+            const btn = document.querySelector('.btn');
+            btn.textContent = 'PROTOCOLO BAIXADO!';
+            btn.style.background = 'var(--matrix-green)';
+            btn.style.color = 'var(--deep-space)';
+            btn.style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.7)';
+            
+            setTimeout(() => {
+                btn.textContent = 'DOWNLOAD DO PROTOCOLO';
+                btn.style.background = 'var(--gradient-futurist)';
+                btn.style.color = 'var(--deep-space)';
+                btn.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3), var(--glow-blue)';
+            }, 2000);
         }
     </script>
 </body>
