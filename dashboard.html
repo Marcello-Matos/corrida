@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino para Iniciantes "Mariana Marques"</title>
+    <style>
+        :root {
+            /* Paleta de cores suaves e motivacionais */
+            --primary: #4a6fa5;    /* Azul suave */
+            --secondary: #6b8cbc;  /* Azul claro */
+            --accent: #ff7e5f;     /* Coral */
+            --accent-light: #ffe0d6; /* Coral claro para fundos */
+            --light: #f8fbff;      /* Branco azulado suave */
+            --dark: #2d3748;       /* Cinza escuro */
+            --text: #5a6c7d;       /* Cinza azulado para texto */
+            --border: #d1e3ff;     /* Azul muito claro para bordas */
+            --success: #68bb74;    /* Verde suave */
+            --warning: #e6b455;    /* Amarelo suave */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --gradient: linear-gradient(135deg, #6b8cbc 0%, #4a6fa5 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fbff 0%, #e6f0ff 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 25px 35px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .logo-container {
+            flex-shrink: 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .logo {
+            height: 80px;
+            width: auto;
+            border-radius: 6px;
+            display: block;
+        }
+        
+        .header-content {
+            flex: 1;
+            text-align: center;
+            padding: 0 25px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .current-level {
+            background: var(--accent-light);
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            border: 2px solid var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(255, 126, 95, 0.1);
+        }
+        
+        .training-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .day-card:hover::before {
+            opacity: 1;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .day-name {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .day-type {
+            background: var(--gradient);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .workout-details {
+            margin-bottom: 20px;
+        }
+        
+        .workout-title {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .workout-description {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: var(--text);
+        }
+        
+        .workout-description p {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .workout-info {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .benefits {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .benefits-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .benefits-list li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            background: var(--light);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .weekly-structure {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weekly-structure::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .structure-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .structure-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--light);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .structure-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+        
+        .structure-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .structure-item h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .progress-tips {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-tips::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .tips-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(107, 140, 188, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(107, 140, 188, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Botão para voltar para o treino do Marcelo */
+        .marcelo-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+            margin-left: 15px;
+        }
+        
+        .marcelo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+            }
+            
+            .training-plan {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content {
+                padding: 0;
+            }
+            
+            .header-buttons {
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+        
+        .intensity-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+        
+        .intensity-level {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .intensity-very-low {
+            background: var(--success);
+            width: 30%;
+        }
+        
+        .intensity-low {
+            background: var(--success);
+            width: 45%;
+        }
+        
+        .intensity-medium {
+            background: var(--warning);
+            width: 60%;
+        }
+        
+        .intensity-high {
+            background: #ed8936;
+            width: 75%;
+        }
+        
+        .intensity-very-high {
+            background: var(--accent);
+            width: 90%;
+        }
+        
+        .intensity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .week-progression {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .progression-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .progression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .progression-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .progression-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .progression-item.active {
+            background: var(--accent-light);
+            border-color: var(--accent);
+        }
+        
+        .progression-week {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .progression-focus {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-container">
+                    <img src="img/marcelloandmariana.png" alt="Marcello e Mariana" class="logo" style="width: 200px; height: auto;">
+                </div>
+            </div>
+            <div class="header-content">
+                <h1>Iniciante "Mariana Marques"</h1>
+                <p class="subtitle">Programa progressivo para quem está começando na corrida</p>
+                <div class="current-level">
+                    <strong>Nível: Iniciante Total</strong>
+                </div>
+                <p>Plano de 4 semanas • 3 dias por semana • Foco em consistência e evolução gradual</p>
+            </div>
+            <div class="header-buttons">
+                <a href="index.html" class="marcelo-btn">Treino do Marcello</a>
+            </div>
+        </div>
+        
+        <div class="week-progression">
+            <h2 class="progression-title">Progressão Semanal</h2>
+            <div class="progression-grid">
+                <div class="progression-item active" data-week="1">
+                    <div class="progression-week">Semana 1</div>
+                    <div class="progression-focus">Introdução</div>
+                </div>
+                <div class="progression-item" data-week="2">
+                    <div class="progression-week">Semana 2</div>
+                    <div class="progression-focus">Adaptação</div>
+                </div>
+                <div class="progression-item" data-week="3">
+                    <div class="progression-week">Semana 3</div>
+                    <div class="progression-focus">Progressão</div>
+                </div>
+                <div class="progression-item" data-week="4">
+                    <div class="progression-week">Semana 4</div>
+                    <div class="progression-focus">Consolidação</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="training-plan" id="training-plan">
+            <!-- Os cards serão preenchidos dinamicamente via JavaScript -->
+        </div>
+        
+        <div class="weekly-structure">
+            <h2 class="structure-title">Estrutura Semanal Inteligente</h2>
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <div class="structure-icon">🚶‍♀️</div>
+                    <h3>Caminhada/Corrida</h3>
+                    <p>Terça: Alternância entre caminhada e corrida leve</p>
+                </div>
+                <div class="structure-item">
+                    <div class="structure-icon">💪</div>
+                    <h3>Força Básica</h3>
+                    <p>Quinta: Exercícios simples para fortalecimento</p>
+                </div>
+                <div class="structure-item">
+                    <div class="structure-icon">🏃‍♀️</div>
+                    <h3>Corrida Contínua</h3>
+                    <p>Sábado: Desenvolvimento da resistência</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-tips">
+            <h2 class="tips-title">Dicas para Iniciantes</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>📊 Progressão Semanal</h3>
+                    <p><strong>Semana 1:</strong> Introdução aos movimentos</p>
+                    <p><strong>Semana 2:</strong> Aumento gradual do tempo</p>
+                    <p><strong>Semana 3:</strong> Introdução de novos estímulos</p>
+                    <p><strong>Semana 4:</strong> Consolidação dos ganhos</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🎯 Metas Realistas</h3>
+                    <p>1 mês: Correr 10 minutos sem parar</p>
+                    <p>2 meses: Aumentar para 15-20 minutos</p>
+                    <p>3 meses: Correr 5km sem caminhar</p>
+                    <p>Foco em consistência, não velocidade</p>
+                </div>
+                <div class="tip-card">
+                    <h3>💪 Dicas Importantes</h3>
+                    <p>Respeite os dias de descanso</p>
+                    <p>Use tênis adequado para corrida</p>
+                    <p>Hidrate-se antes, durante e depois</p>
+                    <p>Escute seu corpo - não force demais</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <button class="btn" onclick="downloadTrainingPlan()">Baixar Plano de Treino</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Marcello e Mariana - Plano de Treino Personalizado</p>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos treinos para cada semana - INICIANTE
+        const workoutPlans = {
+            1: { // Semana 1 - Introdução
+                "Terça-feira": {
+                    type: "Caminhada/Corrida",
+                    title: "Alternância Suave",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada leve</p>
+                        <p>Principal: 8 séries de (1min correndo + 2min caminhando)</p>
+                        <p>Foco em respiração e postura</p>
+                        <p>Volta à calma: 5min de caminhada leve</p>
+                    `,
+                    duration: "20-25min",
+                    distance: "2-3km",
+                    intensity: "very-low",
+                    benefits: [
+                        "Adaptação cardiovascular",
+                        "Familiarização com a corrida",
+                        "Desenvolvimento de resistência básica",
+                        "Baixo impacto nas articulações"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Força Básica",
+                    title: "Exercícios Fundamentais",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Agachamentos: 3 séries de 10 repetições</p>
+                        <p>Flexões (na parede ou joelhos): 3 séries de 8</p>
+                        <p>Prancha: 3 séries de 20 segundos</p>
+                        <p>Alongamento: 10min</p>
+                    `,
+                    duration: "25-30min",
+                    distance: "N/A",
+                    intensity: "low",
+                    benefits: [
+                        "Fortalecimento muscular",
+                        "Melhora da postura",
+                        "Prevenção de lesões",
+                        "Preparação para corridas mais longas"
+                    ]
+                },
+                "Sábado": {
+                    type: "Corrida Contínua",
+                    title: "Corrida Leve",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Principal: Tente correr 5min sem parar</p>
+                        <p>Se necessário, caminhe e depois retome</p>
+                        <p>Objetivo: completar 15-20min de atividade</p>
+                        <p>Volta à calma: 5min de caminhada</p>
+                    `,
+                    duration: "25-30min",
+                    distance: "2.5-3.5km",
+                    intensity: "low",
+                    benefits: [
+                        "Desenvolvimento de resistência",
+                        "Aumento da confiança",
+                        "Melhora da capacidade aeróbica",
+                        "Adaptação progressiva"
+                    ]
+                }
+            },
+            2: { // Semana 2 - Adaptação
+                "Terça-feira": {
+                    type: "Caminhada/Corrida",
+                    title: "Aumento Progressivo",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada leve</p>
+                        <p>Principal: 6 séries de (2min correndo + 1min caminhando)</p>
+                        <p>Foco em ritmo constante</p>
+                        <p>Volta à calma: 5min de caminhada leve</p>
+                    `,
+                    duration: "25-30min",
+                    distance: "3-4km",
+                    intensity: "low",
+                    benefits: [
+                        "Aumento gradual da resistência",
+                        "Melhora da eficiência respiratória",
+                        "Adaptação muscular progressiva",
+                        "Desenvolvimento de confiança"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Força Básica",
+                    title: "Fortalecimento Progressivo",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Agachamentos: 3 séries de 12 repetições</p>
+                        <p>Flexões: 3 séries de 10 (adaptadas)</p>
+                        <p>Prancha: 3 séries de 30 segundos</p>
+                        <p>Afundos: 2 séries de 8 cada perna</p>
+                        <p>Alongamento: 10min</p>
+                    `,
+                    duration: "30-35min",
+                    distance: "N/A",
+                    intensity: "medium",
+                    benefits: [
+                        "Fortalecimento de membros inferiores",
+                        "Melhora da estabilidade",
+                        "Aumento da resistência muscular",
+                        "Preparação para corridas mais longas"
+                    ]
+                },
+                "Sábado": {
+                    type: "Corrida Contínua",
+                    title: "Aumento de Duração",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Principal: Tente correr 8min sem parar</p>
+                        <p>Se conseguir, descanse 2min e repita</p>
+                        <p>Objetivo: completar 20-25min de atividade</p>
+                        <p>Volta à calma: 5min de caminhada</p>
+                    `,
+                    duration: "30-35min",
+                    distance: "3-4km",
+                    intensity: "medium",
+                    benefits: [
+                        "Aumento da capacidade aeróbica",
+                        "Melhora da resistência cardiovascular",
+                        "Desenvolvimento de mentalidade positiva",
+                        "Preparação para distâncias maiores"
+                    ]
+                }
+            },
+            3: { // Semana 3 - Progressão
+                "Terça-feira": {
+                    type: "Caminhada/Corrida",
+                    title: "Intervalos Mais Longos",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada leve</p>
+                        <p>Principal: 5 séries de (3min correndo + 1min caminhando)</p>
+                        <p>Mantenha um ritmo confortável</p>
+                        <p>Volta à calma: 5min de caminhada leve</p>
+                    `,
+                    duration: "30-35min",
+                    distance: "3.5-4.5km",
+                    intensity: "medium",
+                    benefits: [
+                        "Aumento significativo da resistência",
+                        "Melhora da economia de corrida",
+                        "Adaptação a períodos mais longos de corrida",
+                        "Preparação para corrida contínua"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Força Básica",
+                    title: "Exercícios Completos",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Agachamentos: 3 séries de 15 repetições</p>
+                        <p>Flexões: 3 séries de 12 (adaptadas)</p>
+                        <p>Prancha: 3 séries de 40 segundos</p>
+                        <p>Afundos: 3 séries de 10 cada perna</p>
+                        <p>Elevação pélvica: 3 séries de 12</p>
+                        <p>Alongamento: 10min</p>
+                    `,
+                    duration: "35-40min",
+                    distance: "N/A",
+                    intensity: "medium",
+                    benefits: [
+                        "Fortalecimento muscular completo",
+                        "Melhora da estabilidade do core",
+                        "Aumento da resistência geral",
+                        "Prevenção eficaz de lesões"
+                    ]
+                },
+                "Sábado": {
+                    type: "Corrida Contínua",
+                    title: "Corrida Estendida",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Principal: Tente correr 12-15min sem parar</p>
+                        <p>Mantenha ritmo confortável e constante</p>
+                        <p>Objetivo: completar 25-30min de atividade</p>
+                        <p>Volta à calma: 5min de caminhada + alongamento</p>
+                    `,
+                    duration: "35-40min",
+                    distance: "4-5km",
+                    intensity: "high",
+                    benefits: [
+                        "Significativo aumento da resistência",
+                        "Melhora da confiança na capacidade",
+                        "Desenvolvimento de pacing intuitivo",
+                        "Preparação para objetivos maiores"
+                    ]
+                }
+            },
+            4: { // Semana 4 - Consolidação
+                "Terça-feira": {
+                    type: "Caminhada/Corrida",
+                    title: "Pré-Teste",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada leve</p>
+                        <p>Principal: 4 séries de (4min correndo + 1min caminhando)</p>
+                        <p>Foco em ritmo constante e controlado</p>
+                        <p>Volta à calma: 5min de caminhada leve</p>
+                    `,
+                    duration: "30-35min",
+                    distance: "4-5km",
+                    intensity: "medium",
+                    benefits: [
+                        "Consolidação dos ganhos da semana 3",
+                        "Preparação para o teste final",
+                        "Refinamento da técnica",
+                        "Aumento da confiança"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Força Básica",
+                    title: "Fortalecimento Completo",
+                    description: `
+                        <p>Aquecimento: 5min de caminhada</p>
+                        <p>Agachamentos: 3 séries de 15-20 repetições</p>
+                        <p>Flexões: 3 séries de 12-15 (adaptadas)</p>
+                        <p>Prancha: 3 séries de 45-60 segundos</p>
+                        <p>Afundos: 3 séries de 12 cada perna</p>
+                        <p>Elevação pélvica: 3 séries de 15</p>
+                        <p>Alongamento completo: 10-15min</p>
+                    `,
+                    duration: "40-45min",
+                    distance: "N/A",
+                    intensity: "high",
+                    benefits: [
+                        "Fortalecimento muscular consolidado",
+                        "Melhora significativa da resistência",
+                        "Preparação completa para próximos ciclos",
+                        "Base sólida para evolução"
+                    ]
+                },
+                "Sábado": {
+                    type: "Teste Final",
+                    title: "Corrida de 15-20min",
+                    description: `
+                        <p>Aquecimento: 5-10min de caminhada/corrida leve</p>
+                        <p>Teste: Tente correr 15-20min sem parar</p>
+                        <p>Mantenha ritmo confortável e constante</p>
+                        <p>Celebre o progresso independente do resultado</p>
+                        <p>Volta à calma: 5-10min de caminhada + alongamento completo</p>
+                    `,
+                    duration: "35-45min",
+                    distance: "4-6km",
+                    intensity: "high",
+                    benefits: [
+                        "Avaliação do progresso mensal",
+                        "Consolidação de toda a evolução",
+                        "Aumento significativo da autoestima",
+                        "Base para próximo ciclo de treinos"
+                    ]
+                }
+            }
+        };
+
+        // Estado atual
+        let currentWeek = 1;
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTrainingPlan();
+            
+            // Configurar eventos para os botões de semana
+            const progressionItems = document.querySelectorAll('.progression-item');
+            
+            progressionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    progressionItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentWeek = parseInt(this.getAttribute('data-week'));
+                    updateTrainingPlan();
+                });
+            });
+        });
+
+        // Atualizar o plano de treino com base na semana selecionada
+        function updateTrainingPlan() {
+            const trainingPlanElement = document.getElementById('training-plan');
+            trainingPlanElement.innerHTML = '';
+            
+            const days = ["Terça-feira", "Quinta-feira", "Sábado"];
+            
+            days.forEach(day => {
+                const workout = workoutPlans[currentWeek][day];
+                const intensityClass = `intensity-${workout.intensity}`;
+                
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-name">${day}</div>
+                        <div class="day-type">${workout.type}</div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-title">${workout.title}</div>
+                        <div class="workout-description">
+                            ${workout.description}
+                        </div>
+                        <div class="workout-info">
+                            <strong>Duração Total:</strong> ${workout.duration}<br>
+                            <strong>Distância Aproximada:</strong> ${workout.distance}
+                        </div>
+                        <div class="intensity-bar">
+                            <div class="intensity-level ${intensityClass}"></div>
+                        </div>
+                        <div class="intensity-label">
+                            <span>Muito Leve</span>
+                            <span>Intenso</span>
+                        </div>
+                    </div>
+                    <div class="benefits">
+                        <div class="benefits-title">Benefícios:</div>
+                        <ul class="benefits-list">
+                            ${workout.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                trainingPlanElement.appendChild(dayCard);
+            });
+        }
+
+        function downloadTrainingPlan() {
+            const planContent = `
+PLANO DE TREINO PARA INICIANTES
+Nível: Iniciante Total
+Duração: 4 semanas | 3 dias/semana
+
+TERÇA-FEIRA - CAMINHADA/CORRIDA
+• Aquecimento: 5min de caminhada leve
+• Principal: Séries alternadas de corrida e caminhada
+• Volta à calma: 5min de caminhada leve
+• Duração total: 20-35min
+
+QUINTA-FEIRA - FORÇA BÁSICA
+• Aquecimento: 5min de caminhada
+• Exercícios: Agachamentos, flexões, prancha, afundos
+• Alongamento: 10-15min
+• Duração total: 25-45min
+
+SÁBADO - CORRIDA CONTÍNUA
+• Aquecimento: 5min de caminhada
+• Principal: Corrida contínua progressiva
+• Volta à calma: 5-10min de caminhada
+• Duração total: 25-45min
+
+DICAS PARA INICIANTES:
+- Respeite seus limites
+- Use tênis adequado para corrida
+- Hidrate-se bem
+- Alimente-se corretamente antes e depois
+- Comemore cada pequeno progresso
+- O descanso é tão importante quanto o treino
+
+Lembre-se: consistência é mais importante que intensidade!
+
+Bons treinos! 🏃‍♀️
+            `;
+            
+            const blob = new Blob([planContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'plano_treino_iniciante.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('Plano de treino baixado com sucesso!');
+        }
+    </script>
+</body>
+</html>

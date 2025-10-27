@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino - Melhoria de Pace</title>
+    <style>
+        :root {
+            /* Nova paleta de cores baseada em tons profissionais e modernos */
+            --primary: #1a365d;    /* Azul escuro elegante */
+            --secondary: #2d3748;  /* Cinza azulado */
+            --accent: #e53e3e;     /* Vermelho energético */
+            --accent-light: #fed7d7; /* Vermelho claro para fundos */
+            --light: #f7fafc;      /* Branco suave */
+            --dark: #2d3748;       /* Cinza escuro */
+            --text: #4a5568;       /* Cinza para texto */
+            --border: #e2e8f0;     /* Cinza claro para bordas */
+            --success: #38a169;    /* Verde para elementos positivos */
+            --warning: #d69e2e;    /* Amarelo para alertas */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 25px 35px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .logo-container {
+            flex-shrink: 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            height: 80px;
+            width: auto;
+            border-radius: 6px;
+            display: block;
+        }
+        
+        .header-content {
+            flex: 1;
+            text-align: center;
+            padding: 0 25px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .current-pace {
+            background: var(--accent-light);
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            border: 2px solid var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(229, 62, 62, 0.1);
+        }
+        
+        .training-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .day-card:hover::before {
+            opacity: 1;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .day-name {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .day-type {
+            background: var(--gradient);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .workout-details {
+            margin-bottom: 20px;
+        }
+        
+        .workout-title {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .workout-description {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: var(--text);
+        }
+        
+        .workout-description p {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .pace-info {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .benefits {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .benefits-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .benefits-list li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            background: var(--light);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .weekly-structure {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weekly-structure::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .structure-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .structure-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--light);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .structure-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+        
+        .structure-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .structure-item h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .progress-tips {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-tips::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .tips-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Botão para a tela da Mariana */
+        .mariana-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(255, 126, 95, 0.3);
+            margin-left: 15px;
+        }
+        
+        .mariana-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 126, 95, 0.4);
+        }
+        
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+            }
+            
+            .training-plan {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content {
+                padding: 0;
+            }
+            
+            .header-buttons {
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+        
+        .intensity-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+        
+        .intensity-level {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .intensity-low {
+            background: var(--success);
+            width: 40%;
+        }
+        
+        .intensity-medium {
+            background: var(--warning);
+            width: 60%;
+        }
+        
+        .intensity-high {
+            background: #ed8936;
+            width: 80%;
+        }
+        
+        .intensity-very-high {
+            background: var(--accent);
+            width: 95%;
+        }
+        
+        .intensity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .week-progression {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .progression-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .progression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .progression-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .progression-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .progression-item.active {
+            background: var(--accent-light);
+            border-color: var(--accent);
+        }
+        
+        .progression-week {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .progression-focus {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-container">
+                    <img src="img/marcelloandmariana.png" alt="Marcello e Mariana" class="logo" style="width: 200px; height: auto;">
+                </div>
+            </div>
+            <div class="header-content">
+                <h1>Treino para Melhoria de Pace</h1>
+                <p class="subtitle">Treino específico para evoluir de 5min/km para paces mais rápidos</p>
+                <div class="current-pace">
+                    <strong>Pace Atual: 5:00 min/km</strong>
+                </div>
+                <p>Plano de 4 semanas • 4 dias por semana • Foco em velocidade e resistência</p>
+            </div>
+            <div class="header-buttons">
+                <a href="mariana.html" class="mariana-btn">Treino da Mariana</a>
+            </div>
+        </div>
+        
+        <div class="week-progression">
+            <h2 class="progression-title">Progressão Semanal</h2>
+            <div class="progression-grid">
+                <div class="progression-item active" data-week="1">
+                    <div class="progression-week">Semana 1</div>
+                    <div class="progression-focus">Adaptação</div>
+                </div>
+                <div class="progression-item" data-week="2">
+                    <div class="progression-week">Semana 2</div>
+                    <div class="progression-focus">Intensificação</div>
+                </div>
+                <div class="progression-item" data-week="3">
+                    <div class="progression-week">Semana 3</div>
+                    <div class="progression-focus">Consolidação</div>
+                </div>
+                <div class="progression-item" data-week="4">
+                    <div class="progression-week">Semana 4</div>
+                    <div class="progression-focus">Teste de Pace</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="training-plan" id="training-plan">
+            <!-- Os cards serão preenchidos dinamicamente via JavaScript -->
+        </div>
+        
+        <div class="weekly-structure">
+            <h2 class="structure-title">Estrutura Semanal Inteligente</h2>
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <div class="structure-icon">🏃‍♂️</div>
+                    <h3>Velocidade</h3>
+                    <p>Quarta: Desenvolvimento da velocidade máxima e potência</p>
+                </div>
+                <div class="structure-item">
+                    <div class="structure-icon">🔄</div>
+                    <h3>Recuperação</h3>
+                    <p>Quinta: Reparo muscular e fortalecimento preventivo</p>
+                </div>
+                <div class="structure-item">
+                    <div class="structure-icon">⚡</div>
+                    <h3>Ritmo</h3>
+                    <p>Sexta: Melhora do limiar e economia de corrida</p>
+                </div>
+                <div class="structure-item">
+                    <div class="structure-icon">📈</div>
+                    <h3>Resistência</h3>
+                    <p>Sábado: Desenvolvimento aeróbico e endurance</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-tips">
+            <h2 class="tips-title">Dicas para Progressão</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>📊 Progressão Semanal</h3>
+                    <p><strong>Semana 1:</strong> Adaptação aos estímulos</p>
+                    <p><strong>Semana 2:</strong> Aumento de volume nos intervalados</p>
+                    <p><strong>Semana 3:</strong> Intensificação do tempo run</p>
+                    <p><strong>Semana 4:</strong> Consolidação e teste de pace</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🎯 Metas Realistas</h3>
+                    <p>1 mês: Pace de 4:45-4:50min/km</p>
+                    <p>2 meses: Pace de 4:30-4:40min/km</p>
+                    <p>3 meses: Pace de 4:15-4:25min/km</p>
+                    <p>Foco em progressão consistente</p>
+                </div>
+                <div class="tip-card">
+                    <h3>💪 Treino Complementar</h3>
+                    <p>Fortaleça core e membros inferiores</p>
+                    <p>Mobilidade de tornozelo e quadril</p>
+                    <p>Descanso ativo nos dias de folga</p>
+                    <p>Hidratação e nutrição adequadas</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <button class="btn" onclick="downloadTrainingPlan()">Baixar Plano de Treino</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Marcello e Mariana - Plano de Treino Personalizado</p>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos treinos para cada semana
+        const workoutPlans = {
+            1: { // Semana 1 - Adaptação
+                "Quarta-feira": {
+                    type: "Treino de Velocidade",
+                    title: "Intervalados de 400m e 800m",
+                    description: `
+                        <p>Aquecimento: 10min em pace leve (5:30-6:00min/km)</p>
+                        <p>Principal: 6-8 x 400m no pace de 4:15-4:30min/km</p>
+                        <p>Recuperação: 400m de trote leve entre cada repetição</p>
+                        <p>4 x 800m no pace de 4:30-4:45min/km</p>
+                        <p>Volta à calma: 10min em pace leve</p>
+                    `,
+                    pace: "4:15-4:45min/km (intervalos)",
+                    distance: "8-10km",
+                    intensity: "very-high",
+                    benefits: [
+                        "Melhora da velocidade máxima",
+                        "Aumento do VO2 máximo",
+                        "Adaptação neuromuscular",
+                        "Economia de corrida"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Recuperação Ativa",
+                    title: "Corrida Leve + Força",
+                    description: `
+                        <p>Corrida contínua: 30-40min em pace confortável (5:30-6:00min/km)</p>
+                        <p>Exercícios educativos: 4x50m de cada</p>
+                        <p>Força: Agachamentos, afundos, prancha e elevação pélvica</p>
+                        <p>Alongamento dinâmico e estático</p>
+                    `,
+                    pace: "5:30-6:00min/km",
+                    distance: "5-7km",
+                    intensity: "low",
+                    benefits: [
+                        "Recuperação muscular",
+                        "Melhora da técnica de corrida",
+                        "Fortalecimento preventivo",
+                        "Manutenção do condicionamento"
+                    ]
+                },
+                "Sexta-feira": {
+                    type: "Tempo Run / Ritmo",
+                    title: "Corrida no Limiar",
+                    description: `
+                        <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
+                        <p>Principal: 20-25min no pace de 4:45-5:00min/km</p>
+                        <p>Manter ritmo constante e controlado</p>
+                        <p>Foco em passada eficiente e respiração</p>
+                        <p>Volta à calma: 10min leve</p>
+                    `,
+                    pace: "4:45-5:00min/km (limiar)",
+                    distance: "8-9km",
+                    intensity: "high",
+                    benefits: [
+                        "Aumento do limiar de lactato",
+                        "Melhora da resistência em ritmo rápido",
+                        "Economia de energia em velocidades sustentáveis",
+                        "Preparação mental para manter ritmo"
+                    ]
+                },
+                "Sábado": {
+                    type: "Longão Progressivo",
+                    title: "Longa Distância com Aceleração",
+                    description: `
+                        <p>Início: 30min em pace confortável (5:30-5:45min/km)</p>
+                        <p>Meio: 30min acelerando gradualmente (5:15-5:30min/km)</p>
+                        <p>Final: 15-20min no pace alvo (5:00-5:10min/km)</p>
+                        <p>Hidratação e nutrição durante o treino</p>
+                    `,
+                    pace: "Progressivo 5:45 → 5:00min/km",
+                    distance: "12-15km",
+                    intensity: "medium",
+                    benefits: [
+                        "Aumento da resistência aeróbica",
+                        "Melhora da queima de gordura",
+                        "Adaptação a correr cansado",
+                        "Preparação para ritmos mais rápidos no final"
+                    ]
+                }
+            },
+            2: { // Semana 2 - Intensificação
+                "Quarta-feira": {
+                    type: "Treino de Velocidade",
+                    title: "Intervalados de 200m e 400m",
+                    description: `
+                        <p>Aquecimento: 15min em pace leve (5:30-6:00min/km)</p>
+                        <p>Principal: 8-10 x 200m no pace de 4:00-4:15min/km</p>
+                        <p>Recuperação: 200m de trote leve entre cada repetição</p>
+                        <p>6 x 400m no pace de 4:15-4:30min/km</p>
+                        <p>Volta à calma: 10min leve</p>
+                    `,
+                    pace: "4:00-4:30min/km (intervalos)",
+                    distance: "9-11km",
+                    intensity: "very-high",
+                    benefits: [
+                        "Desenvolvimento de velocidade máxima",
+                        "Melhora da capacidade anaeróbica",
+                        "Aumento da cadência",
+                        "Adaptação a ritmos mais rápidos"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Recuperação Ativa",
+                    title: "Corrida Leve + Força Funcional",
+                    description: `
+                        <p>Corrida contínua: 35-45min em pace confortável (5:30-6:00min/km)</p>
+                        <p>Exercícios educativos: 5x50m de cada</p>
+                        <p>Força funcional: Pliometria leve, core avançado</p>
+                        <p>Alongamento dinâmico e estático</p>
+                    `,
+                    pace: "5:30-6:00min/km",
+                    distance: "6-8km",
+                    intensity: "low",
+                    benefits: [
+                        "Recuperação ativa",
+                        "Melhora da potência muscular",
+                        "Prevenção de lesões",
+                        "Manutenção da forma física"
+                    ]
+                },
+                "Sexta-feira": {
+                    type: "Tempo Run / Ritmo",
+                    title: "Corrida Contínua no Limiar",
+                    description: `
+                        <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
+                        <p>Principal: 25-30min no pace de 4:40-4:55min/km</p>
+                        <p>Manter ritmo constante e controlado</p>
+                        <p>Foco em economia de movimento</p>
+                        <p>Volta à calma: 10min leve</p>
+                    `,
+                    pace: "4:40-4:55min/km (limiar)",
+                    distance: "9-10km",
+                    intensity: "high",
+                    benefits: [
+                        "Aumento da tolerância ao lactato",
+                        "Melhora da eficiência em ritmo sustentado",
+                        "Desenvolvimento da resistência mental",
+                        "Preparação para provas"
+                    ]
+                },
+                "Sábado": {
+                    type: "Longão Progressivo",
+                    title: "Longa Distância com Variações",
+                    description: `
+                        <p>Início: 25min em pace confortável (5:30-5:45min/km)</p>
+                        <p>Meio: 35min com variações (5:00-5:30min/km)</p>
+                        <p>Final: 20min no pace alvo (4:50-5:05min/km)</p>
+                        <p>Hidratação e nutrição estratégica</p>
+                    `,
+                    pace: "Progressivo 5:45 → 4:50min/km",
+                    distance: "13-16km",
+                    intensity: "medium",
+                    benefits: [
+                        "Aumento da endurance",
+                        "Melhora da capacidade de variação de ritmo",
+                        "Adaptação a diferentes intensidades",
+                        "Preparação para situações de prova"
+                    ]
+                }
+            },
+            3: { // Semana 3 - Consolidação
+                "Quarta-feira": {
+                    type: "Treino de Velocidade",
+                    title: "Intervalados de 800m e 1000m",
+                    description: `
+                        <p>Aquecimento: 15min em pace leve (5:30-6:00min/km)</p>
+                        <p>Principal: 5-6 x 800m no pace de 4:20-4:35min/km</p>
+                        <p>Recuperação: 400m de trote leve entre cada repetição</p>
+                        <p>3-4 x 1000m no pace de 4:30-4:45min/km</p>
+                        <p>Volta à calma: 10min leve</p>
+                    `,
+                    pace: "4:20-4:45min/km (intervalos)",
+                    distance: "10-12km",
+                    intensity: "very-high",
+                    benefits: [
+                        "Consolidação da velocidade sustentada",
+                        "Melhora da resistência à fadiga",
+                        "Aumento da capacidade aeróbica",
+                        "Preparação para distâncias maiores"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Recuperação Ativa",
+                    title: "Corrida Leve + Mobilidade",
+                    description: `
+                        <p>Corrida contínua: 40-50min em pace confortável (5:30-6:00min/km)</p>
+                        <p>Exercícios de mobilidade: 15min focados em quadril e tornozelo</p>
+                        <p>Alongamento profundo: 15min</p>
+                        <p>Respiração e relaxamento</p>
+                    `,
+                    pace: "5:30-6:00min/km",
+                    distance: "7-9km",
+                    intensity: "low",
+                    benefits: [
+                        "Recuperação muscular profunda",
+                        "Melhora da amplitude de movimento",
+                        "Prevenção de desequilíbrios",
+                        "Preparação para a semana de testes"
+                    ]
+                },
+                "Sexta-feira": {
+                    type: "Tempo Run / Ritmo",
+                    title: "Corrida Progressiva no Limiar",
+                    description: `
+                        <p>Aquecimento: 15min progressivo (6:00 → 5:30min/km)</p>
+                        <p>Principal: 30min progressivo (5:00 → 4:40min/km)</p>
+                        <p>Manter controle da respiração e postura</p>
+                        <p>Foco em transições suaves de ritmo</p>
+                        <p>Volta à calma: 10min leve</p>
+                    `,
+                    pace: "Progressivo 5:00 → 4:40min/km",
+                    distance: "10-11km",
+                    intensity: "high",
+                    benefits: [
+                        "Desenvolvimento da capacidade de aceleração",
+                        "Melhora do controle de ritmo",
+                        "Aumento da confiança em ritmos mais rápidos",
+                        "Preparação para situações de prova"
+                    ]
+                },
+                "Sábado": {
+                    type: "Longão Progressivo",
+                    title: "Longa Distância com Ritmo Controlado",
+                    description: `
+                        <p>Início: 20min em pace confortável (5:30-5:45min/km)</p>
+                        <p>Meio: 40min no pace alvo (5:00-5:10min/km)</p>
+                        <p>Final: 15min no pace de teste (4:45-5:00min/km)</p>
+                        <p>Simulação de estratégia de prova</p>
+                    `,
+                    pace: "Controlado 5:45 → 4:45min/km",
+                    distance: "14-17km",
+                    intensity: "medium",
+                    benefits: [
+                        "Consolidação da endurance",
+                        "Melhora do pacing estratégico",
+                        "Adaptação a ritmos de prova",
+                        "Preparação mental para a semana de testes"
+                    ]
+                }
+            },
+            4: { // Semana 4 - Teste de Pace
+                "Quarta-feira": {
+                    type: "Teste de Velocidade",
+                    title: "Teste de 1.600m e 3.200m",
+                    description: `
+                        <p>Aquecimento: 20min completo com alongamentos dinâmicos</p>
+                        <p>Teste 1: 1.600m no melhor pace possível</p>
+                        <p>Recuperação: 10min de trote leve</p>
+                        <p>Teste 2: 3.200m no melhor pace sustentável</p>
+                        <p>Volta à calma: 15min leve + alongamento</p>
+                    `,
+                    pace: "Máximo sustentável",
+                    distance: "8-9km",
+                    intensity: "very-high",
+                    benefits: [
+                        "Avaliação do progresso em velocidade",
+                        "Determinação de paces de treino",
+                        "Teste da capacidade máxima",
+                        "Base para planejamento futuro"
+                    ]
+                },
+                "Quinta-feira": {
+                    type: "Recuperação Ativa",
+                    title: "Corrida Muito Leve + Alongamento",
+                    description: `
+                        <p>Corrida contínua: 25-30min em pace muito leve (6:00-6:30min/km)</p>
+                        <p>Alongamento estático: 20min focado em grupos musculares trabalhados</p>
+                        <p>Respiração e relaxamento: 10min</p>
+                        <p>Hidratação e nutrição de recuperação</p>
+                    `,
+                    pace: "6:00-6:30min/km",
+                    distance: "4-5km",
+                    intensity: "low",
+                    benefits: [
+                        "Recuperação completa pós-teste",
+                        "Redução da dor muscular",
+                        "Preparação para o teste final",
+                        "Restauração do sistema neuromuscular"
+                    ]
+                },
+                "Sexta-feira": {
+                    type: "Teste de Ritmo",
+                    title: "Teste de 5km",
+                    description: `
+                        <p>Aquecimento: 20min progressivo com acelerações</p>
+                        <p>Teste: 5km no melhor tempo possível</p>
+                        <p>Manter ritmo constante e controlado</p>
+                        <p>Foco em estratégia e mentalidade</p>
+                        <p>Volta à calma: 15min leve + alongamento</p>
+                    `,
+                    pace: "Melhor pace de 5km",
+                    distance: "8-9km",
+                    intensity: "very-high",
+                    benefits: [
+                        "Avaliação do pace atual real",
+                        "Determinação do limiar de corrida",
+                        "Teste da resistência em ritmo rápido",
+                        "Base para o próximo ciclo de treino"
+                    ]
+                },
+                "Sábado": {
+                    type: "Longão de Recuperação",
+                    title: "Corrida Longa e Confortável",
+                    description: `
+                        <p>Corrida contínua: 50-60min em pace confortável (5:45-6:15min/km)</p>
+                        <p>Foco em técnica e relaxamento</p>
+                        <p>Hidratação constante</p>
+                        <p>Alongamento final completo</p>
+                    `,
+                    pace: "5:45-6:15min/km",
+                    distance: "8-10km",
+                    intensity: "low",
+                    benefits: [
+                        "Recuperação ativa pós-testes",
+                        "Manutenção do volume semanal",
+                        "Consolidação dos ganhos do mês",
+                        "Preparação para o próximo ciclo"
+                    ]
+                }
+            }
+        };
+
+        // Estado atual
+        let currentWeek = 1;
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTrainingPlan();
+            
+            // Configurar eventos para os botões de semana
+            const progressionItems = document.querySelectorAll('.progression-item');
+            
+            progressionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    progressionItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentWeek = parseInt(this.getAttribute('data-week'));
+                    updateTrainingPlan();
+                });
+            });
+        });
+
+        // Atualizar o plano de treino com base na semana selecionada
+        function updateTrainingPlan() {
+            const trainingPlanElement = document.getElementById('training-plan');
+            trainingPlanElement.innerHTML = '';
+            
+            const days = ["Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            
+            days.forEach(day => {
+                const workout = workoutPlans[currentWeek][day];
+                const intensityClass = `intensity-${workout.intensity}`;
+                
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-name">${day}</div>
+                        <div class="day-type">${workout.type}</div>
+                    </div>
+                    <div class="workout-details">
+                        <div class="workout-title">${workout.title}</div>
+                        <div class="workout-description">
+                            ${workout.description}
+                        </div>
+                        <div class="pace-info">
+                            <strong>Pace Alvo:</strong> ${workout.pace}<br>
+                            <strong>Distância Total:</strong> ${workout.distance}
+                        </div>
+                        <div class="intensity-bar">
+                            <div class="intensity-level ${intensityClass}"></div>
+                        </div>
+                        <div class="intensity-label">
+                            <span>Baixa</span>
+                            <span>Alta</span>
+                        </div>
+                    </div>
+                    <div class="benefits">
+                        <div class="benefits-title">Benefícios:</div>
+                        <ul class="benefits-list">
+                            ${workout.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                trainingPlanElement.appendChild(dayCard);
+            });
+        }
+
+        function downloadTrainingPlan() {
+            const planContent = `
+PLANO DE TREINO - MELHORIA DE PACE
+Pace Atual: 5:00 min/km
+Duração: 4 semanas | 4 dias/semana
+
+QUARTA-FEIRA - TREINO DE VELOCIDADE
+• Aquecimento: 10min (5:30-6:00min/km)
+• Principal: 6-8 x 400m (4:15-4:30min/km)
+• Recuperação: 400m trote entre repetições
+• 4 x 800m (4:30-4:45min/km)
+• Volta à calma: 10min leve
+• Distância total: 8-10km
+
+QUINTA-FEIRA - RECUPERAÇÃO ATIVA
+• Corrida: 30-40min (5:30-6:00min/km)
+• Exercícios educativos: 4x50m cada
+• Força: Agachamentos, afundos, prancha
+• Alongamento completo
+• Distância total: 5-7km
+
+SEXTA-FEIRA - TEMPO RUN
+• Aquecimento: 15min progressivo
+• Principal: 20-25min (4:45-5:00min/km)
+• Manter ritmo constante
+• Volta à calma: 10min
+• Distância total: 8-9km
+
+SÁBADO - LONGO PROGRESSIVO
+• Início: 30min (5:30-5:45min/km)
+• Meio: 30min (5:15-5:30min/km)
+• Final: 15-20min (5:00-5:10min/km)
+• Distância total: 12-15km
+
+DICAS:
+- Hidrate-se adequadamente
+- Alimentação pré e pós-treino
+- Respeite os dias de descanso
+- Escute seu corpo
+- Progressão gradual
+
+Bons treinos! 🏃‍♂️
+            `;
+            
+            const blob = new Blob([planContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'plano_treino_melhoria_pace.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('Plano de treino baixado com sucesso!');
+        }
+    </script>
+</body>
+</html>
